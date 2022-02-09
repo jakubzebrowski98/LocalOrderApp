@@ -1,20 +1,39 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Welcome from '../views/WelcomePage/Welcome.vue'
+import Menu from '../views/Menu/MenuPage.vue'
+import SummaryOrder from '../views/SummaryOrder/SummaryPage'
+import successPage from '../views/EndPage/SuccessPage'
+import errorPage from '../views/EndPage/FailPage'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Welcome',
+    component: Welcome
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/zamowienie/:type/menu/:category',
+    name: 'menu',
+    component: Menu,
+    props: true,
+  },
+  {
+    path: '/zamowienie/:type/zakończ',
+    name: 'SummaryOrder',
+    component: SummaryOrder,
+    props: true,
+  },
+  {
+    path: '/zamowienie/zakonczono/:OrderNo',
+    name: 'success',
+    component: successPage,
+    props: true,
+  },
+  {
+    path: '/zamowienie/blad',
+    name: 'error',
+    component: errorPage
+  },
 ]
 
 const router = createRouter({
