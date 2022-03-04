@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="d-flex justify-content-center">
-                <img class="productImg" src="http://localhost/images/meals/Burger-S.png">
+                <img class="meal-img" :src="require(`../../assets/meals/${meal.Category}.png`)">
             </div>
             <p class="">{{ meal.Name }}</p>
             <div class="d-flex justify-content-center mb-3">

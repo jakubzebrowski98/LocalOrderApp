@@ -12,9 +12,8 @@
     </nav>
     <div class="row contentPage">
         <div class="col-3 shadow categoryBox">
-            <div class="card px-3" v-for="Category in Categories" :key="Category.id" 
+            <div class="card px-3 card-category" v-for="Category in Categories" :key="Category.id" 
                 v-on:click="changeMeals(Category.id)" >
-                <img :src="'http://localhost/images/category/' + Category.Photo" class="card-img-top">
                 <div class="card-body">
                 <h5 class="card-title">{{ Category.Name }}</h5>
                 </div>
@@ -24,7 +23,7 @@
             <div class="row p-3">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4" v-for="Meal in MenuByCategory" :key="Meal.MealId">
                     <div class="card card-body shadow m-2 pointer mealCard" v-on:click="viewMeal(Meal)">
-                        <img src="http://localhost/images/meals/Burger-S.png">
+                        <img class="img-thumbnail" :src="require(`../../assets/meals/${Meal.Category}.png`)">
                         <p class="mb-0 text-start">{{ Meal.Name }}</p>
                         <p class="mb-0 text-end"><strong>{{ Meal.Price }} zł</strong></p>
                     </div>
@@ -104,9 +103,6 @@
 
 <style>
 
-.contentPage{
-}
-
 .page{
     height: 100vh;
     background: rgb(218, 218, 218); 
@@ -136,6 +132,19 @@
 
 .categoryBox{
     background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-category{
+    width: 100%;
+}
+
+.meal-img{
+    height: 300px;
+    margin-bottom:1rem;
 }
 
 .fade-in{
